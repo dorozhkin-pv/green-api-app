@@ -18,8 +18,6 @@ const MainContextProvider = ({ children }) => {
     setMessages,
   };
 
-  console.log('MainContextProvider  value:', value);
-
   return <MainContext.Provider value={value}>{children}</MainContext.Provider>;
 };
 
