@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactModal from 'react-modal';
+import { Chat } from './components/Chat/Chat';
+import { CredentialsForm } from './components/EnterForms/CredentialsForm';
+import { useMainContext } from './MainContext';
+import { ChatIdForm } from './components/EnterForms/ChatIdForm';
+
+ReactModal.setAppElement('#modal');
 
 function App() {
+  const { credentials, chatId } = useMainContext();
+
+  const isModal = !credentials || !chatId;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ReactModal isOpen={isModal} contentLabel="Minimal Modal Example">
+        <CredentialsForm />
+        <ChatIdForm />
+      </ReactModal>
+
+      {!isModal && <Chat />}
+    </>
   );
 }
 
